@@ -1,14 +1,14 @@
-const FormerMember = ({ image, date, title, info, location, duration, cost }) => {
-  // const FormerMember = ({ filename, name, title, info, key}) => {
+// const FormerMember = ({ image, date, title, info, location, duration, cost }) => {
+  const FormerMember = ({ filename, name, title, info, dateEnded}) => {
     return (
       <article className='tour-card'>
         <div className='tour-img-container'>
-          <img src={image} className='tour-img' alt={title} />
-          <p className='tour-date'>{title}</p>
+        <img src={`http://ec2-13-231-242-0.ap-northeast-1.compute.amazonaws.com:3001/images/`+ filename} className='tour-img' alt={title} />
+          <p className='tour-date'>{dateEnded}</p>
         </div>
         <div className='tour-info'>
           <div className='tour-title'>
-            <h4>{date}</h4>
+            <h4>{name}</h4>
           </div>
           <p>{info}</p>
           <div className='tour-footer'>
