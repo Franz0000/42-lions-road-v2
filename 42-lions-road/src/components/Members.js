@@ -1,4 +1,4 @@
-import { officialMembers , formerMembers, teachers} from '../data/members.js'
+// import { officialMembers , formerMembers, teachers} from '../data/members.js'
 import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 
@@ -7,37 +7,42 @@ import OfficialMembers from './OfficialMembers'
 import FormerMembers from './FormerMembers'
 import Teachers from './Teachers'
 const Members = () => {
-  // const [officialMember, setOfficialMembers] = useState([]);
+  const [officialMember, setOfficialMembers] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get('http://ec2-54.95.255.71.ap-northeast-1.compute.amazonaws.com:3000/officials/member')
-  //   .then((response) => {
-  //     console.log('Image retrieve successfully:' , response.data.officialMembersData)
-  //     setOfficialMembers(response.data.officialMembersData)
-  //   })
-  //   .catch(error => console.error('Error getting images:', error))
-  // }, [])
+  useEffect(() => {
+    axios.get('http://ec2-13-231-242-0.ap-northeast-1.compute.amazonaws.com:3001/officials/member')
+    .then((response) => {
+      console.log('Image retrieve successfully:' , response.data.officialMembersData)
+      setOfficialMembers(response.data.officialMembersData)
+    })
+    .catch(error => console.error('Error getting images:', error))
+  }, [])
   return (<>
       <section className='section' id='tours'>
       <Title title='Official' subTitle='Members' />
-      <div className='section-center featured-center'>
+      {/* <div className='section-center featured-center'>
         {officialMembers.map((member) => {
           console.log(member)
           return <OfficialMembers {...member} key={member.id} />
         })}
-      </div>
-      <Title title='Former' subTitle='Officials' />
+      </div> */}
       <div className='section-center featured-center'>
-        {formerMembers.map((member) => {
-          return <FormerMembers {...member} key={member.id} />
+        {officialMember.map((member) => {
+          return <OfficialMembers {...member} key={member._id} />
+        })}
+      </div>
+      {/* <Title title='Former' subTitle='Officials' />
+      <div className='section-center featured-center'>
+        {formerMembers.map((formerMember) => {
+          return <FormerMembers {...formerMember} key={formerMember.id} />
         })}
       </div>
       <Title title='Beloved' subTitle='Teachers' />
       <div className='section-center featured-center'>
-        {teachers.map((member) => {
-          return <Teachers {...member} key={member.id} />
+        {teachers.map((teacher) => {
+          return <Teachers {...teacher} key={teacher.id} />
         })}
-      </div>
+      </div> */}
     </section>
   </>
 
