@@ -1,13 +1,14 @@
 const FormerMember = ({ image, date, title, info, location, duration, cost }) => {
+  // const FormerMember = ({ filename, name, title, info, key}) => {
     return (
       <article className='tour-card'>
         <div className='tour-img-container'>
           <img src={image} className='tour-img' alt={title} />
-          <p className='tour-date'>{date}</p>
+          <p className='tour-date'>{title}</p>
         </div>
         <div className='tour-info'>
           <div className='tour-title'>
-            <h4>{title}</h4>
+            <h4>{date}</h4>
           </div>
           <p>{info}</p>
           <div className='tour-footer'>
@@ -15,7 +16,7 @@ const FormerMember = ({ image, date, title, info, location, duration, cost }) =>
               <span>
                 <i className='fas fa-map'></i>
               </span>
-              {location}
+              {title}
             </p>
           </div>
         </div>
