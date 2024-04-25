@@ -9,6 +9,7 @@ import Teachers from './Teachers'
 const Members = () => {
   const [officialMember, setOfficialMembers] = useState([]);
   const [formerMembers, setFormerMembers] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
     axios.get('http://ec2-13-231-242-0.ap-northeast-1.compute.amazonaws.com:3001/officials/member')
@@ -24,6 +25,15 @@ const Members = () => {
     .then((response) => {
       console.log('Image retrieve successfully:' , response.data.formerMembersData)
       setFormerMembers(response.data.formerMembersData)
+    })
+    .catch(error => console.error('Error getting images:', error))
+  }, [])
+
+  useEffect(() => {
+    axios.get('http://ec2-13-231-242-0.ap-northeast-1.compute.amazonaws.com:3001/teachers/member')
+    .then((response) => {
+      console.log('Image retrieve successfully:' , response.data.teachersData)
+      setTeachers(response.data.teachersData)
     })
     .catch(error => console.error('Error getting images:', error))
   }, [])
@@ -48,12 +58,12 @@ const Members = () => {
           return <FormerMembers {...formerMember} key={formerMember._id} />
         })}
       </div>
-      {/* <Title title='Beloved' subTitle='Teachers' />
+      <Title title='Beloved' subTitle='Teachers' />
       <div className='section-center featured-center'>
         {teachers.map((teacher) => {
-          return <Teachers {...teacher} key={teacher.id} />
+          return <Teachers {...teacher} key={teacher._id} />
         })}
-      </div> */}
+      </div>
     </section>
   </>
 
